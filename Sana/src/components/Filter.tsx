@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { type Category, getCategories } from '../services/category';
-import { getProductsByCategory,getProducts} from '../services/products';
+import { getProductsByCategory,getProducts,getProductBySearch} from '../services/products';
 import '../styles/filter.css';
 import type { Product } from '../services/products';
 export interface FilterProps {
-    onSelectCategory: (product: Product[]) => void;
+    changeProducts: (products: Product[]) => void;
 }
 
-export default function Filter({ onSelectCategory }: FilterProps) {
+export default function Filter({ changeProducts }: FilterProps) {
     const [categories, setCategories] = useState<Category[]>([]);
 
     useEffect(() => {
@@ -17,12 +17,18 @@ export default function Filter({ onSelectCategory }: FilterProps) {
     const handleCategoryChange = (categoryName: string) => {
         if (categoryName === '') {
             getProducts().then((products) => {
-                onSelectCategory(products);
+                changeProducts(products);
             });
             return;
         }
         getProductsByCategory(categoryName).then((products) => {
-            onSelectCategory(products);
+            changeProducts(products);
+        });
+    }
+
+    const handleSearchChange = (query: string) => {
+        getProductBySearch(query).then((products) => {
+            changeProducts(products);
         });
     }
     return (
@@ -38,7 +44,7 @@ export default function Filter({ onSelectCategory }: FilterProps) {
                         className='search-input'
                         placeholder='Search...'
                         onChange={(e) => {
-                            const query = e.target.value.toLowerCase();
+                            handleSearchChange(e.target.value.toLowerCase());
                         }}
                     />
                 </div>

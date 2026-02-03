@@ -1,14 +1,16 @@
 .item-card{
-    border: 2px solid #ccc;
     border-radius: 8px;
     padding: 16px;
-    text-align: center;
+    text-align: start;
     width: 100%;
     height: auto;
 }
 .item-card img{
-    max-width: 20%;
+    max-width: 40%;
     height: auto;
+}
+.item-card h2{
+    font-size: medium;
 }
 .item-card:hover,
 .item-card:focus{
