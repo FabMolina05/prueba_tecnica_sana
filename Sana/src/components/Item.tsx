@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { type Product } from "../services/products.tsx";
+import "../styles/item.css";
 
 export interface ItemProps {
     product: Product;
@@ -7,7 +7,7 @@ export interface ItemProps {
 }
 export default function Item({product, onClick}: ItemProps) {
  
- return <>
+ return (
     <div 
     role="button"
     className="item-card"
@@ -16,5 +16,5 @@ export default function Item({product, onClick}: ItemProps) {
       <h2 className="item-title">{product.title}</h2>
       <p className="item-price">${product.price}</p>
     </div>
-  </>
+ )
 }

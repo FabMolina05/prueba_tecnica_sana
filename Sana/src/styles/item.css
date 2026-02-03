@@ -1,0 +1,21 @@
+.item-card{
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    width: 100%;
+    height: auto;
+}
+.item-card img{
+    max-width: 20%;
+    height: auto;
+}
+.item-card:hover,
+.item-card:focus{
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-color: #646cff;
+    width: 102%;
+    height: auto;
+    transition: box-shadow 0.3s, border-color 0.3s, width 0.5s , height 0.5s;
+
+}
