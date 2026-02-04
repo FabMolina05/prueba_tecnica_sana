@@ -34,6 +34,8 @@ export default function HomePage() {
             top: 0,
             behavior: 'smooth'
         })
+        setAnimationKey(prev => prev + 1)
+
     };
 
     const nextPage = () => {
@@ -43,6 +45,8 @@ export default function HomePage() {
                 top: 0,
                 behavior: 'smooth'
             })
+            setAnimationKey(prev => prev + 1)
+
         }
     };
 
@@ -53,6 +57,8 @@ export default function HomePage() {
                 top: 0,
                 behavior: 'smooth'
             })
+            setAnimationKey(prev => prev + 1)
+
         }
     };
 
@@ -60,7 +66,7 @@ export default function HomePage() {
         getProducts().then(setProducts)
         setTimeout(() => { setIsLoading(false) }, 500)
     }, [])
-    
+
 
 
     const handleFilter = (products: Product[]) => {
@@ -70,7 +76,7 @@ export default function HomePage() {
             behavior: 'smooth'
         })
         setProducts(products);
-        setAnimationKey(prev => prev+1)
+        setAnimationKey(prev => prev + 1)
     }
 
     const handleItemModal = (id: number) => {
@@ -80,11 +86,11 @@ export default function HomePage() {
     }
 
 
-if(isLoading){
-    return(
-        <LoadingSpinner/>
-    )
-}
+    if (isLoading) {
+        return (
+            <LoadingSpinner />
+        )
+    }
 
     return <>
         <NavBar />
@@ -92,7 +98,7 @@ if(isLoading){
             <Filter setShowAddModal={setShowAddModal} changeProducts={handleFilter} />
             {
                 (currentItems.length > 0) ? (
-                    <div  key={animationKey} className="products-container">
+                    <div key={animationKey} className="products-container">
 
                         <div className="item-group">
                             {currentItems.map(product => (
