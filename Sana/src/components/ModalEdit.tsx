@@ -1,11 +1,15 @@
 import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { editProduct, getProductById, type EditProduct } from "../services/products";
+import LoadingSpinner from "../components/Spinner"
+
 import "../styles/modalAdd.css";
 
 
 export default function ModalEdit({ onClose ,productId}: { onClose?: () => void, productId: number }) {
     const [product, setProduct] = useState<EditProduct | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+
     const navigate = useNavigate()
 
     const handleSubmit = () => {
@@ -18,7 +22,8 @@ export default function ModalEdit({ onClose ,productId}: { onClose?: () => void,
         }
     }
     useEffect(() => {
-        getProductById(productId).then(setProduct);
+        getProductById(productId).then(setProduct)
+        setTimeout(()=>{setIsLoading(false)},100)
     },[]);
 
 
@@ -30,6 +35,11 @@ export default function ModalEdit({ onClose ,productId}: { onClose?: () => void,
             price: name === 'price' ? Number(value) : (prevProduct?.price || 0),
             img: name === 'img' ? value : (prevProduct?.img || ''),
         }));
+    }
+    if(isLoading){
+        return(
+            <LoadingSpinner/>
+        )
     }
 
     return (

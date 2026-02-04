@@ -2,24 +2,26 @@ import Swal from "sweetalert2";
 
 export interface Product {
     id: number;
-        title: string;
-        price: number;
-        img: string;
-        stock: number;
+    title: string;
+    price: number;
+    img: string;
+    stock: number;
+    rating: number;
+    category: string;
 }
 
-export interface AddProduct{
-      title: string;
-        price: number;
-        img: string;
+export interface AddProduct {
+    title: string;
+    price: number;
+    img: string;
 }
 
-export interface EditProduct{
-        id: number;
-        title: string;
-        price: number;
-        img: string;
-        
+export interface EditProduct {
+    id: number;
+    title: string;
+    price: number;
+    img: string;
+
 }
 
 export async function getProducts(): Promise<Product[]> {
@@ -45,11 +47,13 @@ export async function getProducts(): Promise<Product[]> {
 
         const data = await response.json();
 
-        return data.products.map((product: { id: number; title: string; price: number; images: string[] }) => ({
+        return data.products.map((product: { id: number; title: string; price: number; images: string[], category: string, rating: number }) => ({
             id: product.id,
             title: product.title,
             price: product.price,
             img: product.images[0],
+            category: product.category,
+            rating: product.rating
         }));
 
     } catch (error) {
@@ -89,7 +93,9 @@ export async function getProductById(id: number): Promise<Product | null> {
                 title: responseData.title,
                 price: responseData.price,
                 img: responseData.images[0],
-                stock : responseData.stock
+                stock: responseData.stock,
+                category: responseData.category,
+                rating: responseData.rating
             };
         }
         return null;
@@ -123,12 +129,15 @@ export async function getProductsByCategory(category: string): Promise<Product[]
         }
         const responseData = await response.json();
 
-        return responseData.products.map((product: { id: number; title: string; price: number; images: string[] }) => ({
+        return responseData.products.map((product: { id: number; title: string; price: number; images: string[], category: string, rating: number }) => ({
             id: product.id,
             title: product.title,
             price: product.price,
             img: product.images[0],
+            category: product.category,
+            rating: product.rating
         }));
+
 
     } catch (error) {
         Swal.fire({
@@ -142,31 +151,34 @@ export async function getProductsByCategory(category: string): Promise<Product[]
 export async function getProductBySearch(search: string) {
 
     try {
-    const response = await fetch(`https://dummyjson.com/products/search?q=${search}`,
-        {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
+        const response = await fetch(`https://dummyjson.com/products/search?q=${search}`,
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             }
+        );
+        if (!response.ok) {
+            Swal.fire({
+                title: "Error",
+                text: "Failed to search products: " + response.statusText,
+                icon: "error"
+            });
+            return [];
         }
-    );
-    if (!response.ok) {
-        Swal.fire({
-            title: "Error",
-            text: "Failed to search products: " + response.statusText,
-            icon: "error"
-        });
-        return [];
-    }
 
-    const responseData = await response.json();
+        const responseData = await response.json();
 
-    return responseData.products.map((product: { id: number; title: string; price: number; images: string[] }) => ({
-        id: product.id,
-        title: product.title,
-        price: product.price,
-        img: product.images[0],
-    }));
+        return responseData.products.map((product: { id: number; title: string; price: number; images: string[], category: string, rating: number }) => ({
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            img: product.images[0],
+            category: product.category,
+            rating: product.rating
+        }));
+
     } catch (error) {
         Swal.fire({
             title: "Error",
@@ -230,7 +242,7 @@ export async function deleteProduct(id: number): Promise<void> {
             return;
         }
         const data = await response.json();
-        if(data.isDeleted === false){
+        if (data.isDeleted === false) {
             Swal.fire({
                 title: "Error",
                 text: "Product could not be deleted.",
@@ -252,7 +264,7 @@ export async function deleteProduct(id: number): Promise<void> {
     }
 }
 
-export async function editProduct(product : EditProduct) : Promise<void>{
+export async function editProduct(product: EditProduct): Promise<void> {
     try {
         const response = await fetch(
             `https://dummyjson.com/products/${product.id}`,
@@ -262,9 +274,9 @@ export async function editProduct(product : EditProduct) : Promise<void>{
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    title : product.title,
-                    price : product.price,
-                    img : product.img
+                    title: product.title,
+                    price: product.price,
+                    img: product.img
                 })
             }
         );
@@ -292,7 +304,7 @@ export async function editProduct(product : EditProduct) : Promise<void>{
     }
 }
 
-export async function editStockProduct(id:number,stock :number) : Promise<void>{
+export async function editStockProduct(id: number, stock: number): Promise<void> {
     try {
         const response = await fetch(
             `https://dummyjson.com/products/${id}`,
@@ -302,7 +314,7 @@ export async function editStockProduct(id:number,stock :number) : Promise<void>{
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    stock : stock
+                    stock: stock
                 })
             }
         );

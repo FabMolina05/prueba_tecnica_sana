@@ -15,6 +15,18 @@
 .item-card h2{
     font-size: medium;
 }
+
+.item-price{
+    font-size: 20px;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
 .item-card:hover,
 .item-card:focus{
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

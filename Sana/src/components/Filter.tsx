@@ -23,6 +23,7 @@ export default function Filter({ changeProducts, setShowAddModal }: FilterProps)
             getProducts().then((products) => {
                 changeProducts(products);
             });
+            
             return;
         }
         getProductsByCategory(categoryName).then((products) => {
