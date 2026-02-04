@@ -36,6 +36,7 @@
 .form-container-add {
    
     width: 40%;
+    min-width: 40%;
     margin-right: 5%;
 }
 
@@ -66,12 +67,13 @@
     transition: border 0.2s ease, box-shadow 0.2s ease;
 }
 .modal-content-add .preview-image {
-    
-    max-width: 60%;
+    width: 50%;
+    max-width: 50%;
     height: auto;
     border: 1px solid #ccc;
     border-radius: 4px;
     object-fit: contain;
+    
 }
 
 .form-container-add input:focus {

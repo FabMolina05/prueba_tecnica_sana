@@ -279,7 +279,8 @@ export async function editProduct(product : EditProduct) : Promise<void>{
         const data = await response.json();
         Swal.fire({
             title: "Success",
-            html: `<p>Product edit successfully</p><p>Title: ${data.title}</p>`,
+            html: `<p>Product edit successfully</p><p>Title: ${data.title}</p>
+            <p>Price: $${data.price}</p>`,
             icon: "success"
         });
     } catch (error) {

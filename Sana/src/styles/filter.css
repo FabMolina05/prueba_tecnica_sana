@@ -5,54 +5,136 @@
     gap: 5px;
     background-color: rgb(146, 150, 153);
     width: 280px;
-    height: 300px;
+    height: 500px;
     border-radius: 10px;
-    
-    
+    padding-bottom: 2%;
+    overflow-y: auto;
+    overflow-x: hidden;
+   
+
+
+}
+.filter-container::-webkit-scrollbar {
+    width: 7px;
 }
 
-.filter-list {
-    position: relative;
+.filter-container::-webkit-scrollbar-track {
+    background: transparent;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.filter-container::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+}
+
+
+
+
+.filter-container:hover::-webkit-scrollbar{
+        background-color: transparent;
 
 }
+.filter-container:hover::-webkit-scrollbar-thumb{
+        background-color: #2c3e5057;
+
+}
+.filter-container::-webkit-scrollbar-thumb:hover {
+    background-color: #2c3e50bd;
+}
+
+
 
 .filter-select {
-  padding: 10px 36px 10px 10px; 
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 12px;
-  width: 90%;
-  bottom: 0;
+    padding: 10px 10px 10px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    width: 90%;
 
-  background-color: #fff;
-  color: #333;
+    background-color: #fff;
+    color: #333;
 
-  
+
 }
+
 .filter-row h4 {
     font-size: 14px;
+    margin-top: 0;
     margin-bottom: 2%;
     color: white;
 }
 
 .searchBar {
-    border-radius: 5px;
-    background-color: rgb(121, 120, 120);
-    font-size: 12px;
+    border-radius: 8px;
+    background-color: #fff;
     width: 90%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.searchBar:focus-within {
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    transform: translateY(-2px);
+}
+
+.group-category {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+.btn-category {
+    background-color: transparent;
+    width: 90%;
+    text-align: start;
+    color: white;
+}
+
+.btn-category:focus {
+    outline: none;
+    background-color: #646cff88;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.btn-category:hover {
+    background-color: #646cff3b;
+    border-color: transparent;
 }
 
 .search-input {
     width: 100%;
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-    font-size: 12px;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
     box-sizing: border-box;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
 }
 
-.filter-row{
+.search-input:focus {
+    outline: none;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.search-input::placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+.search-input:hover {
+    border-color: #bbb;
+    background-color: #fff;
+}
+
+.filter-row {
 
     display: flex;
     flex-direction: column;
@@ -61,21 +143,40 @@
     justify-content: center;
     padding-left: 4%;
 
-    
+
+
+}
+
+.filter-button {
+    padding: 10px 20px;
+    background-color: #646cff3b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 90%;
+}
+
+.filter-button:hover {
+    background-color: #646cffd2;
+
 }
 
 .filter-header {
     font-size: 12px;
     font-weight: bold;
-    margin-bottom: 2%;
     color: white;
     width: 100%;
-    text-align: center; 
+    text-align: start;
     align-items: center;
     justify-content: center;
+    padding-left: 4%;
 }
 
-.filter-header hr {
+.filter-container hr {
+    text-align: center;
+    align-items: center;
     border: none;
     border-top: 4px solid #2c3e50;
     border-radius: 2px;

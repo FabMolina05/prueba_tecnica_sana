@@ -1,18 +1,22 @@
 import { useState, useEffect } from 'react';
 import { type Category, getCategories } from '../services/category';
-import { getProductsByCategory,getProducts,getProductBySearch} from '../services/products';
+import { getProductsByCategory, getProducts, getProductBySearch } from '../services/products';
 import '../styles/filter.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import type { Product } from '../services/products';
 export interface FilterProps {
     changeProducts: (products: Product[]) => void;
+    setShowAddModal: (show: boolean) => void;
+
 }
 
-export default function Filter({ changeProducts }: FilterProps) {
+export default function Filter({ changeProducts, setShowAddModal }: FilterProps) {
     const [categories, setCategories] = useState<Category[]>([]);
 
     useEffect(() => {
         getCategories().then(setCategories);
-    },[]);
+    }, []);
 
     const handleCategoryChange = (categoryName: string) => {
         if (categoryName === '') {
@@ -33,10 +37,6 @@ export default function Filter({ changeProducts }: FilterProps) {
     }
     return (
         <div className='filter-container'>
-            <div className='filter-header'>
-                <h2>Filter</h2>
-                <hr/>
-            </div>
             <div className='filter-row'>
                 <div className='searchBar'>
                     <input
@@ -48,20 +48,32 @@ export default function Filter({ changeProducts }: FilterProps) {
                         }}
                     />
                 </div>
+                <button
+                    className="filter-button"
+                    onClick={() => setShowAddModal(true)}>
+                    <FontAwesomeIcon icon="plus"
+                    /> Add Product</button>
             </div>
-            
+            <hr />
+            <div className='filter-header'>
+                <h2>Filter</h2>
+            </div>
+
+
             <div className='filter-row'>
                 <h4>Categories</h4>
-                <select className='filter-select' onChange={(e) => {
-                    handleCategoryChange(e.target.value);
-                }}>
-                    <option value=''>All</option>
+                <div className='group-category'>
+                    <button className='btn-category' onClick={()=>handleCategoryChange("")}>
+                        <span>All</span>
+                    </button>
+
                     {categories.map((category) => (
-                        <option key={category.slug} value={category.slug}>
-                            {category.name}
-                        </option>
+                        <button className='btn-category' onClick={()=>handleCategoryChange(category.slug)}>
+                        <span>{category.name}</span>
+                    </button>
                     ))}
-                </select>
+                </div>
+
             </div>
         </div>
 

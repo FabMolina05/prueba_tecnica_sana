@@ -59,7 +59,7 @@ export default function ModalAdd({ onClose }: { onClose?: () => void }) {
                     </form>
                 </div>
                 {product?.img && (
-                    <img src={product.img} alt={product.title} className="preview-image" />
+                    <img src={product.img} alt="Invalid URL" className="preview-image" />
                 )}
 
             </div>

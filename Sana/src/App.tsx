@@ -1,6 +1,6 @@
 import HomePage from './pages/homePage'
 import Info from './pages/info';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 
 import './App.css'
 
