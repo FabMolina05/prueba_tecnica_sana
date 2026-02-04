@@ -36,9 +36,9 @@ export default function HomePage() {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
             window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        })
+                top: 0,
+                behavior: 'smooth'
+            })
         }
     };
 
@@ -46,9 +46,9 @@ export default function HomePage() {
         if (currentPage > 1) {
             setCurrentPage(currentPage - 1);
             window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        })
+                top: 0,
+                behavior: 'smooth'
+            })
         }
     };
 
@@ -69,51 +69,62 @@ export default function HomePage() {
     const handleItemModal = (id: number) => {
         setSelected(id)
         navigate(`/info/${id}`)
-        
+
     }
 
 
 
-  
+
     return <>
-        <NavBar  />
+        <NavBar />
         <div className="container-home">
             <Filter setShowAddModal={setShowAddModal} changeProducts={handleFilter} />
-            <div className="products-container">
-                <div className="item-group">
-                    {currentItems.map(product => (
-                        <Item
-                            key={product.id}
-                            product={product}
-                            onClick={() => handleItemModal(product.id)}
-                        />))}
+            {(currentItems.length > 0) ? (
+                <div className="products-container">
+
+                    <div className="item-group">
+                        {currentItems.map(product => (
+                            <Item
+                                key={product.id}
+                                product={product}
+                                onClick={() => handleItemModal(product.id)}
+                            />))}
+                    </div>
+
                 </div>
-            </div>
-        </div>
-        
-        <div className="pagination">
-            <button onClick={prevPage} disabled={currentPage === 1}>
-                Anterior
-            </button>
+            ) : (
+                <div className="not-found">
+                    <span>No entries found</span>
+                </div>
 
-            {[...Array(totalPages)].map((_, index) => (
-                <button
-                    key={index + 1}
-                    onClick={() => goToPage(index + 1)}
-                    className={currentPage === index + 1 ? 'active' : ''}
-                >
-                    {index + 1}
+            )}
+
+        </div>
+        {(currentItems.length > 0) &&
+            <div className="pagination">
+                <button onClick={prevPage} disabled={currentPage === 1}>
+                    Anterior
                 </button>
-            ))}
 
-            <button onClick={nextPage} disabled={currentPage === totalPages}>
-                Siguiente
-            </button>
-        </div>
+                {[...Array(totalPages)].map((_, index) => (
+                    <button
+                        key={index + 1}
+                        onClick={() => goToPage(index + 1)}
+                        className={currentPage === index + 1 ? 'active' : ''}
+                    >
+                        {index + 1}
+                    </button>
+                ))}
 
-       
+                <button onClick={nextPage} disabled={currentPage === totalPages}>
+                    Siguiente
+                </button>
+            </div>
+        }
 
-       
+
+
+
         {showAddModal && <ModalAdd
             onClose={() => setShowAddModal(false)} />}
         {showEditModal && <ModalEdit
