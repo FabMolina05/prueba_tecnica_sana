@@ -1,4 +1,4 @@
-# Proyecto Frontend con Vite + React
+# Proyecto Prueba Técnica Sana Health Technologies
 
 Este proyecto fue creado utilizando **Vite** como bundler y **React** como librería principal para la construcción de la interfaz de usuario.
 
