@@ -5,7 +5,7 @@ import LoadingSpinner from "../components/Spinner"
 import ModalAdd from "../components/ModalAdd"
 import ModalEdit from "../components/ModalEdit"
 import NavBar from "../components/Navbar"
-import Filter from "../components/filter"
+import Filter from "../components/Filter"
 import Item from "../components/Item"
 import "../styles/homePage.css"
 
@@ -60,6 +60,7 @@ export default function HomePage() {
             setAnimationKey(prev => prev + 1)
 
         }
+        
     };
 
     useEffect(() => {
@@ -123,7 +124,7 @@ export default function HomePage() {
         {(currentItems.length > 0) &&
             <div className="pagination">
                 <button onClick={prevPage} disabled={currentPage === 1}>
-                    Anterior
+                    Previous
                 </button>
 
                 {[...Array(totalPages)].map((_, index) => (
@@ -137,7 +138,7 @@ export default function HomePage() {
                 ))}
 
                 <button onClick={nextPage} disabled={currentPage === totalPages}>
-                    Siguiente
+                    Next
                 </button>
             </div>
         }
