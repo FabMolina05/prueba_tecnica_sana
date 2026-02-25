@@ -8,7 +8,8 @@ Este proyecto fue creado utilizando **Vite** como bundler y **React** como libre
 ![Capturas](./screenshots/principal.png)
 
 ### Filtros
---Los filtros se basan en las diferentes categorías que existen, además de poder buscar productos por el nombre
+--Los filtros se basan en las diferentes categorías que existen, además de poder buscar productos por el nombre.
+
 ![Capturas](./screenshots/filtros.png).
 
 ### Filtro por búsqueda
