@@ -5,32 +5,32 @@ Este proyecto fue creado utilizando **Vite** como bundler y **React** como libre
 ## 📷 Capturas
 
 ### Página principal
-(./screenshots/principal.png)
+![Capturas](./screenshots/principal.png)
 
 ### Filtros
 --Los filtros se basan en las diferentes categorías que existen, además de poder buscar productos por el nombre
-(./screenshots/filtro.png)
+![Capturas](./screenshots/filtro.png)
 
 ### Filtro por búsqueda
-(./screenshots/filtro2.png)
+![Capturas](./screenshots/filtro2.png)
 
 ### Filtro por categoría
-(./screenshots/filtro3.png)
+![Capturas](./screenshots/filtro3.png)
 
 ### Vista detallada del producto
-(./screenshots/vista-item.png)
+![Capturas](./screenshots/vista-item.png)
 
 ### Editar un producto
-(./screenshots/editar.png)
+![Capturas](./screenshots/editar.png)
 
 ### Eliminar un producto
-(./screenshots/eliminar.png)
+![Capturas](./screenshots/eliminar.png)
 
 ### Aumentar Stock de un producto
-(./screenshots/añadir.png)
+![Capturas](./screenshots/añadir.png)
 
 ### Agregar un producto
-(./screenshots/producto.png)
+![Capturas](./screenshots/producto.png)
 
 
 
